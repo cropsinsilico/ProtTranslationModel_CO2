@@ -1,0 +1,30 @@
+Glyma_ID	Description	U	L	D1	D
+Glyma.01G010200	Phosphoribulokinase	0.3	0.4	6	6.00E+16
+Glyma.01G026700	Glycine transaminase	0.3	0.4	60	6.00E+16
+Glyma.02G228700	6-phosphofructo-2-kinase	0.3	0.4	6.00E-05	6.00E+16
+Glyma.03G027500	Transketolase	0.3	0.4	600	6.00E+16
+Glyma.04G008300	"FRUCTOSE-BISPHOSPHATE ALDOLASE 1, CHLOROPLASTIC-RELATED"	0.3	0.4	6.00E+32	6.00E+16
+Glyma.04G011900	Glucose-1-phosphate adenylyltransferase	0.3	0.4	0.006	6.00E+16
+Glyma.06G094300	Glucose-6-phosphate isomerase	0.3	0.4	0.0006	6.00E+16
+Glyma.06G323700	Sucrose-phosphate synthase	0.3	0.4	0.0006	6.00E+16
+Glyma.08G044100	Phosphoglucomutase	0.3	0.4	0.006	6.00E+16
+Glyma.08G165500	Phosphoglycerate kinase	0.3	0.4	6000	6.00E+16
+Glyma.08G175800	(S)-2-hydroxy-acid oxidase 	0.3	0.4	0.6	6.00E+16
+Glyma.08G214300	inorganic diphosphatase	0.3	0.4	0.006	6.00E+16
+Glyma.08G302600	Serine-glyoxylate transaminase	0.3	0.4	600	6.00E+16
+Glyma.09G015500	Phosphoglycolate phosphatase	0.3	0.4	6.00E+32	6.00E+16
+Glyma.10G059500	Triose-phosphate isomerase	0.3	0.4	6.00E+32	6.00E+16
+Glyma.10G066700	Fructose-bisphosphate aldolase	0.3	0.4	0.006	6.00E+16
+Glyma.10G086600	Sucrose-phosphate phosphatase	0.3	0.4	0.0006	6.00E+16
+Glyma.10G265400	Ribose-5-phosphate isomerase	0.3	0.4	0.0006	6.00E+16
+Glyma.10G281400	Glycerate dehydrogenase	0.3	0.4	0.06	6.00E+16
+Glyma.13G062700	Starch synthase	0.3	0.4	0.006	6.00E+16
+Glyma.13G222300	glycine hydroxymethyltransferase	0.3	0.4	6.00E+32	6.00E+16
+Glyma.15G012500	Glycerate kinase	0.3	0.4	60	6.00E+16
+Glyma.15G038100	Triose-phosphate isomerase	0.3	0.4	6.00E-06	6.00E+16
+Glyma.15G250800	(S)-2-hydroxy-acid oxidase	0.3	0.4	6.00E+32	6.00E+16
+Glyma.17G228800	glycine dehydrogenase (aminomethyl-transferring)	0.3	0.35	6.00E+32	6.00E+16
+Glyma.17G261700	"Catalase(CAT, EC1.11.1.6)"	0.3	0.4	6.00E-06	6.00E+16
+Glyma.19G046600	Ribulose-bisphosphate carboxylase	0.3	0.4	6.00E+32	6.00E+16
+Glyma.19G088400	Ribulose-phosphate 3-epimerase	0.3	0.4	0.0006	6.00E+16
+Glyma.19G106800	Glyceraldehyde-3-phosphate dehydrogenase (NADP+)	0.3	0.4	6.00E+32	6.00E+16

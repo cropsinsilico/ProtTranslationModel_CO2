@@ -1,0 +1,30 @@
+Glyma_ID	Description	No_in_Xhu_model	Initial_protein_content	mRNA_ele	mRNA_Amb
+Glyma.01G010200	Phosphoribulokinase	13	4.815447396	0.954347547	1
+Glyma.01G026700	Glycine transaminase	124	4.576365858	0.91513799	1
+Glyma.02G228700	6-phosphofructo-2-kinase	59	0.007142857	0.884803608	1
+Glyma.03G027500	Transketolase	"7,10"	7.23992103	1	0.836354883
+Glyma.04G008300	"FRUCTOSE-BISPHOSPHATE ALDOLASE 1, CHLOROPLASTIC-RELATED"	0	1.312651261	0.963203144	1
+Glyma.04G011900	Glucose-1-phosphate adenylyltransferase	23	0.102632112	1	0.508070369
+Glyma.06G094300	Glucose-6-phosphate isomerase	21	0.039783002	1	0.78405116
+Glyma.06G323700	Sucrose-phosphate synthase	56	0.041627585	1	0.676089159
+Glyma.08G044100	Phosphoglucomutase	54	0.165829146	1	0.832471469
+Glyma.08G165500	Phosphoglycerate kinase	2	2.5117348	0.872650392	1
+Glyma.08G175800	(S)-2-hydroxy-acid oxidase 	121/1	0.99961711	0.931469408	1
+Glyma.08G214300	inorganic diphosphatase	25	0.15796129	1	0.779392086
+Glyma.08G302600	Serine-glyoxylate transaminase	122	3.578866379	0.956855171	1
+Glyma.09G015500	Phosphoglycolate phosphatase	112	17.95202781	1	0.997852965
+Glyma.10G059500	Triose-phosphate isomerase	0	0.027777778	1	0.853358136
+Glyma.10G066700	Fructose-bisphosphate aldolase	51	0.115636587	1	0.807173556
+Glyma.10G086600	Sucrose-phosphate phosphatase	57	0.026641654	1	0.757245529
+Glyma.10G265400	Ribose-5-phosphate isomerase	11	0.077034884	0.861238678	1
+Glyma.10G281400	Glycerate dehydrogenase	123	0.553026581	1	0.864795613
+Glyma.13G062700	Starch synthase	23	0.102632112	1	0.792697291
+Glyma.13G222300	glycine hydroxymethyltransferase	131	37.42118172	1	0.686836641
+Glyma.15G012500	Glycerate kinase	113	1.343210077	1	0.68570568
+Glyma.15G038100	Triose-phosphate isomerase	50	0.002944444	1	0.955670181
+Glyma.15G250800	(S)-2-hydroxy-acid oxidase	0	0.99961711	1	0.774085874
+Glyma.17G228800	glycine dehydrogenase (aminomethyl-transferring)	131	37.42118172	1	0.620701159
+Glyma.17G261700	"Catalase(CAT, EC1.11.1.6)"	122/2	0.001346901	0.999448904	1
+Glyma.19G046600	Ribulose-bisphosphate carboxylase	1	107.0869611	0.949650566	1
+Glyma.19G088400	Ribulose-phosphate 3-epimerase	12	0.038732394	0.903328743	1
+Glyma.19G106800	Glyceraldehyde-3-phosphate dehydrogenase (NADP+)	3	14.54213822	1	0.716879996

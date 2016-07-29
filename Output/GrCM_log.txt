@@ -1,0 +1,62 @@
+DEBUG:PsiRun in /home/ubuntu/Models_AMQP/GrCM
+DEBUG:GrCM.yml
+DEBUG:{'inputs': [{'args': './Input/GrCM_input.txt', 'driver': 'FileInputDriver', 'name': 'GrCM_input1'}, {'args': './Input/GrCM_static.txt', 'driver': 'FileInputDriver', 'name': 'GrCM_static'}], 'model': [{'args': ['python', 'src/GrCM.py'], 'driver': 'ModelDriver', 'name': 'GrMCPython'}], 'outputs': [{'args': './Output/GrCM_output.txt', 'driver': 'FileOutputDriver', 'name': 'GrCM_output'}]}
+DEBUG:RunModels::run()
+DEBUG:creating GrCM_output, a FileOutputDriver
+DEBUG:loaded <module 'FileOutputDriver' from '/home/ubuntu/raila/Plants_in_Silico/RMQ-support/drivers/FileOutputDriver.pyc'>
+DEBUG:FileOutput(GrCM_output)
+DEBUG:Driver()
+INFO:IODriver(/GrCM_output)
+DEBUG:creating GrCM_input1, a FileInputDriver
+DEBUG:loaded <module 'FileInputDriver' from '/home/ubuntu/raila/Plants_in_Silico/RMQ-support/drivers/FileInputDriver.pyc'>
+DEBUG:FileInput(GrCM_input1)
+DEBUG:Driver()
+INFO:IODriver(/GrCM_input1)
+DEBUG:creating GrCM_static, a FileInputDriver
+DEBUG:loaded <module 'FileInputDriver' from '/home/ubuntu/raila/Plants_in_Silico/RMQ-support/drivers/FileInputDriver.pyc'>
+DEBUG:FileInput(GrCM_static)
+DEBUG:Driver()
+INFO:IODriver(/GrCM_static)
+DEBUG:creating GrMCPython, a ModelDriver
+DEBUG:loaded <module 'ModelDriver' from '/home/ubuntu/raila/Plants_in_Silico/RMQ-support/drivers/ModelDriver.pyc'>
+DEBUG:Driver()
+DEBUG:['python', 'src/GrCM.py']
+INFO:PsiRun(): STARTING DRIVERS
+DEBUG:PythonModelDriver::run ['python', 'src/GrCM.py'] from /home/ubuntu/Models_AMQP/GrCM
+DEBUG:FileInput(GrCM_input1):run in /home/ubuntu/Models_AMQP/GrCM
+DEBUG:FileInput(GrCM_input1):get, got data
+INFO:IODriver(GrCM_input1)::send: posix send
+INFO:IODriver(GrCM_input1)::send: posix send completed
+DEBUG:FileInput(GrCM_input1):send returned
+DEBUG:FileInput(GrCM_static):run in /home/ubuntu/Models_AMQP/GrCM
+DEBUG:FileInput(GrCM_static):get, got data
+INFO:IODriver(GrCM_static)::send: posix send
+INFO:IODriver(GrCM_static)::send: posix send completed
+DEBUG:FileInput(GrCM_static):send returned
+DEBUG:FileOutput(GrCM_output):run in /home/ubuntu/Models_AMQP/GrCM
+INFO:IODriver(GrCM_output)::recv:  call posix receive
+INFO:PsiRun(): ALL DRIVERS STARTED
+DEBUG:PsiRun: runAll: joining <ModelDriver(GrMCPython, started 139948472710912)>
+INFO:IODriver(GrCM_output)::recv posix received completed
+DEBUG:FileOutput(GrCM_output):recvd 3550 bytes
+DEBUG:FileOutput(GrCM_output):write 3550 bytes
+DEBUG:FileOutput(GrCM_output):write 3550 complete
+DEBUG:PythonModelDriver::done
+DEBUG:PsiRun: runAll: join(<ModelDriver(GrMCPython, stopped 139948472710912)>) returns
+INFO:PsiRun(): MODELS DONE
+DEBUG:PsiRun: runAll: joining <FileInputDriver(GrCM_input1, stopped 139948464318208)>
+DEBUG:PsiRun: runAll: join(<FileInputDriver(GrCM_input1, stopped 139948464318208)>) returns
+DEBUG:PsiRun: runAll: joining <FileInputDriver(GrCM_static, stopped 139948455925504)>
+DEBUG:PsiRun: runAll: join(<FileInputDriver(GrCM_static, stopped 139948455925504)>) returns
+DEBUG:PsiRun: runAll: joining <FileOutputDriver(GrCM_output, stopped 139948464318208)>
+DEBUG:PsiRun: runAll: join(<FileOutputDriver(GrCM_output, stopped 139948464318208)>) returns
+INFO:PsiRun(): MODELS DONE
+DEBUG:RunModels::run() returns
+DEBUG:main returns
+DEBUG:FileInput(GrCM_static):~
+INFO:IODriver~(GrCM_static)
+DEBUG:FileInput(GrCM_input1):~
+INFO:IODriver~(GrCM_input1)
+DEBUG:Driver~()
+DEBUG:FileOutput(GrCM_output):~
+INFO:IODriver~(GrCM_output)

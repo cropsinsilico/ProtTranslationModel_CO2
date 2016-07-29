@@ -1,0 +1,21 @@
+---
+
+model:
+  - name: GrMCPython
+    driver: ModelDriver
+    args: 
+      - python
+      - src/GrCM.py
+
+inputs:
+  - name: GrCM_input1
+    driver: FileInputDriver
+    args: ./Input/GrCM_input.txt
+  - name: GrCM_static
+    driver: FileInputDriver
+    args: ./Input/GrCM_static.txt
+
+outputs:
+  - name: GrCM_output
+    driver: FileOutputDriver
+    args: ./Output/GrCM_output.txt

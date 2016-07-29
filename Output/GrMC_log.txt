@@ -1,0 +1,24 @@
+DEBUG:PsiRun in /home/ubuntu/Models_AMQP/GrMC
+DEBUG:GrMC.yml
+DEBUG:{'inputs': [{'args': './Input/GrMC_input.txt', 'driver': 'FileInputDriver', 'name': 'GrMC_input1'}, {'args': './Input/GrMC_static.txt', 'driver': 'FileInputDriver', 'name': 'GrMC_static'}], 'model': [{'args': ['python', 'src/GrMC.py'], 'driver': 'ModelDriver', 'name': 'GrMCPython'}], 'outputs': [{'args': './Output/GrMC_output.txt', 'driver': 'FileOutputDriver', 'name': 'GrMC_output'}]}
+DEBUG:RunModels::run()
+DEBUG:creating GrMC_output, a FileOutputDriver
+DEBUG:loaded <module 'FileOutputDriver' from '/home/ubuntu/raila/Plants_in_Silico/RMQ-support/drivers/FileOutputDriver.pyc'>
+DEBUG:FileOutput(GrMC_output)
+DEBUG:Driver()
+INFO:IODriver(/GrMC_output)
+DEBUG:creating GrMC_input1, a FileInputDriver
+DEBUG:loaded <module 'FileInputDriver' from '/home/ubuntu/raila/Plants_in_Silico/RMQ-support/drivers/FileInputDriver.pyc'>
+DEBUG:FileInput(GrMC_input1)
+DEBUG:Driver()
+INFO:IODriver(/GrMC_input1)
+DEBUG:creating GrMC_static, a FileInputDriver
+DEBUG:loaded <module 'FileInputDriver' from '/home/ubuntu/raila/Plants_in_Silico/RMQ-support/drivers/FileInputDriver.pyc'>
+DEBUG:FileInput(GrMC_static)
+DEBUG:Driver()
+INFO:IODriver(/GrMC_static)
+DEBUG:FileInput(/GrMC_static):~
+DEBUG:FileInput(GrMC_input1):~
+INFO:IODriver~(GrMC_input1)
+DEBUG:FileOutput(GrMC_output):~
+INFO:IODriver~(GrMC_output)
