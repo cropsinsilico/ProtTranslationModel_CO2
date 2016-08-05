@@ -13,8 +13,8 @@ Execute the program: src/GrMC.py ./Input/GrCM_input.txt ./Output/GrCM_output.txt
 Method 2: Using a bash script
 cd to the GrCM/ directory
 Run the script: 
-. ../../raila/Plants_in_Silico/RMQ-support/interface/setup.sh
-../../raila/Plants_in_Silico/RMQ-support/interface/PsiRun.py GrCM.yml > ./Output/GrCM_log.txt
+. ../../RMQ-support/interface/setup.sh
+../../RMQ-support/interface/PsiRun.py GrCM.yml > ./Output/GrCM_log.txt
 
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------
