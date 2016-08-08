@@ -3,7 +3,7 @@ import os
 import sys
 import csv
 import numpy as np
-import StringIO
+from six import StringIO
 from scipy import integrate
 from matplotlib.pylab import *
 import matplotlib.pyplot as plt
@@ -89,7 +89,7 @@ def main():
     os.makedirs(dir)
     #os.makedirs("./Output/Temp/")
     file = open("./Output/Temp/temp_static.txt", "w")
-    file.write(data2)
+    file.write(data2.decode('utf8'))
     file.close()
     data = pandas.read_csv("./Output/Temp/temp_static.txt", sep ="\t")
     r1 = integrate.ode(Protein_translation_Amb).set_integrator('vode', method='bdf')
@@ -105,7 +105,7 @@ def main():
     initial_protein_conc = data["Initial_protein_content"].tolist()
     #print(len(initial_protein_conc))# List of initial protein concentration values
     file = open("./Output/Temp/temp_input.txt", "w")
-    file.write(data1)
+    file.write(data1.decode('utf8'))
     file.close()
     r1.set_initial_value(initial_protein_conc, t_start).set_f_params("./Output/Temp/temp_input.txt", "./Output/Temp/temp_static.txt")
     r2.set_initial_value(initial_protein_conc, t_start).set_f_params("./Output/Temp/temp_input.txt", "./Output/Temp/temp_static.txt")
@@ -249,4 +249,3 @@ def main():
 # The ``driver`` that will integrate the ODE(s):
 if __name__ == '__main__':
     main()
-    
