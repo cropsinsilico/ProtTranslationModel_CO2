@@ -1,0 +1,12 @@
+---
+
+connections:
+  - input: ./Input/GrCM_input.txt
+    output: GrCM_input1
+    read_meth: pandas
+  - input: ./Input/GrCM_static.txt
+    output: GrCM_static
+    read_meth: pandas
+  - input: GrCM_output
+    output: ./Output/GrCM_output.txt
+    write_meth: pandas
