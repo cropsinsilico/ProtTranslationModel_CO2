@@ -1,7 +1,7 @@
 ---
 
 model:
-  name: GrMCPython
+  name: GrCMPython
   driver: ModelDriver
   args: 
     - python
