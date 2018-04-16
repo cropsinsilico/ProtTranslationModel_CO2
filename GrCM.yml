@@ -5,7 +5,7 @@ model:
   driver: ModelDriver
   args: 
     - python
-    - src/GrCM.py
+    - src/GrCM_plain.py
   inputs:
     - GrCM_input1
     - GrCM_static
