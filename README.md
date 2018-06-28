@@ -7,6 +7,7 @@ This model essentially predicts the steady state protein concentration of select
 ## References
 
 Becskei, A., & Serrano, L. (2000). Engineering stability in gene networks by autoregulation. Nature, 405(6786), 590.
+
 El Samad, H., Khammash, M., Petzold, L., & Gillespie, D. (2005). Stochastic modelling of gene regulatory networks. International Journal of Robust and Nonlinear Control, 15(15), 691-711.
 
 ## Running the model
