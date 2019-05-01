@@ -6,7 +6,7 @@ from scipy import integrate
 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-from cis_interface.interface.CisInterface import *
+from yggdrasil.interface.YggInterface import *
 
 
 _save_trajectories = False
@@ -145,9 +145,9 @@ def main():
     # GrCM(data_static, data_inp)
 
     # Get input from chanels (supplied by file or another model)
-    in1 = CisPandasInput('GrCM_input1')
-    in2 = CisPandasInput('GrCM_static')
-    out1 = CisPandasOutput('GrCM_output')
+    in1 = YggPandasInput('GrCM_input1')
+    in2 = YggPandasInput('GrCM_static')
+    out1 = YggPandasOutput('GrCM_output')
 
     flag, data_static = in2.recv()
     if not flag:
