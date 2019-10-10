@@ -13,7 +13,7 @@ El Samad, H., Khammash, M., Petzold, L., & Gillespie, D. (2005). Stochastic mode
 ## Running the model
 
 ```
-python src/GrMC.py
+python src/GrMC_plain.py
 ```
 
 ## Model Inputs/Outputs
