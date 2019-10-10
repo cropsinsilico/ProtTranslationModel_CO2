@@ -19,7 +19,6 @@ def Protein_translation_RNA(t, y, L, U, D, mRNA):
     p1,p2,p3....: Protein concentrations for all ODEs
     It will have list of all parameter values for all my ODEs, so 36 values :
     L, U, D for each mRNA to protein conversion equation
-
     """
     # Output from ODE function must be a COLUMN vector, with n rows
     return (L * mRNA) / (1.0 + y / D) - U * y
@@ -38,7 +37,6 @@ TDIR = os.path.dirname(os.path.abspath(__file__))
 def GrCM(data_static, data_inp,
          save_trajectories=True, plot_trajectories=True):
     r"""Integrate input, getting trajectories for the integration.
-
     Args:
         data_static (pandas.DataFrame): Static information.
         data_inp (pandas.DataFrame): Initial values.
@@ -46,10 +44,8 @@ def GrCM(data_static, data_inp,
             be output to disk. Defaults to True.
         plot_trajectories (bool, optional): If True, the trajectories will
             be plotted. Defaults to True.
-
     Outputs:
         pandas.DataFrame: The final values after integration.
-
     """
 
     r1 = integrate.ode(Protein_translation_RNA).set_integrator(
@@ -66,7 +62,8 @@ def GrCM(data_static, data_inp,
 
     # Set initial condition(s): for integrating variable and time! Get the
     # initial protein concentrations from Yu's file
-    initial_protein_conc = data_static["Initial_protein_content"]
+    initial_protein_concAmb = data_static["Initial_protein_contentAmb"]
+    initial_protein_concEle = data_static["Initial_protein_contentEle"]
 
     ###
     L = data_inp["L"]  # protein synthesis rate per day
@@ -76,10 +73,10 @@ def GrCM(data_static, data_inp,
     D = data_inp["D"]
 
     mRNA = data_static["mRNA_Amb"]
-    r1.set_initial_value(initial_protein_conc,
+    r1.set_initial_value(initial_protein_concAmb,
                          t_start).set_f_params(L, U, D, mRNA)
     mRNA = data_static["mRNA_ele"]
-    r2.set_initial_value(initial_protein_conc,
+    r2.set_initial_value(initial_protein_concEle,
                          t_start).set_f_params(L, U, D, mRNA)
 
     # Integrate the ODE(s) across each delta_t timestep
