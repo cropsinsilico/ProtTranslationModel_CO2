@@ -96,8 +96,8 @@ def GrCM(data_static, data_inp,
 
     # Make separate lists for final protein concentration from ODE results of
     # Ambient and Elevated mRNA data respectively
-    data_static.loc[:, 'new_prot_levels_Amb'] = list1[-1, :]
-    data_static.loc[:, 'new_prot_levels_Ele'] = list2[-1, :]
+    #data_static.loc[:, 'new_prot_levels_Amb'] = list1[-1, :]
+    #data_static.loc[:, 'new_prot_levels_Ele'] = list2[-1, :]
     data_static.loc[:, 'Ele:Amb'] = list2[-1, :] / list1[-1, :]
     if save_trajectories:
         data_static.to_csv(
