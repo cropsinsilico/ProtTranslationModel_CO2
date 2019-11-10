@@ -33,8 +33,8 @@ def Protein_translation_RNA(t, y, L, U, D, mRNA):
 
 TDIR = os.path.dirname(os.path.abspath(__file__))
 
-
-def GrCM(data_static, data_inp,
+####Need to add lines of code to add a 3rd input file 'GRN_input.txt' and modify it's columns to create a new mRNA exp column in data_static.txt
+def GrCM(grn_input, data_static, data_inp,
          save_trajectories=True, plot_trajectories=True):
     r"""Integrate input, getting trajectories for the integration.
     Args:
@@ -52,6 +52,10 @@ def GrCM(data_static, data_inp,
         'vode', method='bdf')
     r2 = integrate.ode(Protein_translation_RNA).set_integrator(
         'vode', method='bdf')
+    r3 = integrate.ode(Protein_translation_RNA).set_integrator(
+        'vode', method='bdf')
+    r4 = integrate.ode(Protein_translation_RNA).set_integrator(
+        'vode', method='bdf')
     # Set the time range
     t_start = 0.0
     t_final = 200.0
@@ -62,8 +66,21 @@ def GrCM(data_static, data_inp,
 
     # Set initial condition(s): for integrating variable and time! Get the
     # initial protein concentrations from Yu's file
+
+    percentageChange = grn_input.transpose()
+    percentageChange.columns = ['Glyma_ID','Averages_Elevated','Averages_ambient']
+
+    data_static = pandas.merge(data_static, percentageChange, on='Glyma_ID')
+    data_static["Averages_Elevated"] = pandas.to_numeric(data_static["Averages_Elevated"])
+    data_static["Averages_ambient"] = pandas.to_numeric(data_static["Averages_ambient"])
+    data_static['mRNA_eleMutant'] = data_static['mRNA_ele'] + (data_static['mRNA_ele']*data_static['Averages_Elevated']/100)
+    data_static['mRNA_ambMutant'] = data_static['mRNA_Amb'] + (data_static['mRNA_Amb']*data_static['Averages_ambient']/100)
+    data_static['MutantEleByWTAmb'] = data_static['Initial_protein_contentAmb']*data_static['mRNA_eleMutant']/data_static['mRNA_Amb']
+    data_static['MutantAmbByWTAmb'] = data_static['Initial_protein_contentAmb']*data_static['mRNA_ambMutant']/data_static['mRNA_Amb']                         
     initial_protein_concAmb = data_static["Initial_protein_contentAmb"]
     initial_protein_concEle = data_static["Initial_protein_contentEle"]
+    initial_protein_concEleMutant = data_static["MutantEleByWTAmb"]
+    initial_protein_concAmbMutant = data_static["MutantAmbByWTAmb"]
 
     ###
     L = data_inp["L"]  # protein synthesis rate per day
@@ -72,11 +89,17 @@ def GrCM(data_static, data_inp,
     # synthesis from mRNA
     D = data_inp["D"]
 
-    mRNA = data_static["mRNA_Amb"]
+    mRNA = data_static["Initial_protein_contentAmb"]
     r1.set_initial_value(initial_protein_concAmb,
                          t_start).set_f_params(L, U, D, mRNA)
-    mRNA = data_static["mRNA_ele"]
+    mRNA = data_static["Initial_protein_contentEle"]
     r2.set_initial_value(initial_protein_concEle,
+                         t_start).set_f_params(L, U, D, mRNA)
+    mRNA = data_static["initial_protein_concEleMutant"]
+    r3.set_initial_value(initial_protein_concEleMutant,
+                         t_start).set_f_params(L, U, D, mRNA)
+    mRNA = data_static["initial_protein_concAmbMutant"]
+    r4.set_initial_value(initial_protein_concAmbMutant,
                          t_start).set_f_params(L, U, D, mRNA)
 
     # Integrate the ODE(s) across each delta_t timestep
@@ -93,12 +116,28 @@ def GrCM(data_static, data_inp,
         r2.integrate(r2.t + delta_t)
         list2 = np.vstack((list2, r2.y[:]))
         k += 1
+        
+    k = 1
+    list3 = r3.y[:]
+    while r3.successful() and k < num_steps:
+        r3.integrate(r3.t + delta_t)
+        list3 = np.vstack((list3, r3.y[:]))
+        k += 1
+    
+    k = 1        
+    list4 = r4.y[:]
+    while r4.successful() and k < num_steps:
+        r4.integrate(r4.t + delta_t)
+        list4 = np.vstack((list4, r4.y[:]))
+        k += 1
 
     # Make separate lists for final protein concentration from ODE results of
     # Ambient and Elevated mRNA data respectively
     #data_static.loc[:, 'new_prot_levels_Amb'] = list1[-1, :]
     #data_static.loc[:, 'new_prot_levels_Ele'] = list2[-1, :]
     data_static.loc[:, 'Ele:Amb'] = list2[-1, :] / list1[-1, :]
+    data_static.loc[:, 'EleMutant:Amb'] = list3[-1, :] / list1[-1, :]
+    data_static.loc[:, 'AmbMutant:Amb'] = list4[-1, :] / list1[-1, :]
     if save_trajectories:
         data_static.to_csv(
             os.path.join(TDIR, "..", "Output", "GrCM_output.txt"),
@@ -143,10 +182,11 @@ def main():
 
     # Get input from chanels (supplied by file or another model)
     in1 = CisPandasInput('GrCM_input1')
-    in2 = CisPandasInput('GrCM_static')
+    in2 = CisPandasInput('grn_input')
+    in3 = CisPandasInput('GrCM_static')
     out1 = CisPandasOutput('GrCM_output')
 
-    flag, data_static = in2.recv()
+    flag, data_static = in3.recv()
     if not flag:
         raise Exception("GrCM: Error receiving from GrCM_static")
 
@@ -154,6 +194,9 @@ def main():
         flag, data_inp = in1.recv()
         if not flag:
             print("GrCM: No more input from GrCM_input1")
+        flag, grn_input = in2.recv()
+        if not flag:
+            print("GrCM: No more input from grn_input")
             break
         data_static = GrCM(data_static, data_inp, save_trajectories=False,
                            plot_trajectories=False)
