@@ -7,6 +7,9 @@ connections:
   - input: ./Input/GrCM_static.txt
     output: GrCM_static
     read_meth: pandas
+  - input: ./Input/GRN_Output.txt
+    output: grn_input
+    read_meth: pandas
   - input: GrCM_output
     output: ./Output/GrCM_output.txt
     write_meth: pandas
