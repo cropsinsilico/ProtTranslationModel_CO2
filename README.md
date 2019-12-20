@@ -13,7 +13,7 @@ El Samad, H., Khammash, M., Petzold, L., & Gillespie, D. (2005). Stochastic mode
 ## Running the model
 
 ```
-python src/GrMC.py
+python src/GrMC_plain.py
 ```
 
 ## Model Inputs/Outputs
@@ -26,7 +26,7 @@ Initial protein content | g/L | float | Initial protein concentration before the
 L | per day | float | Protein synthesis rate.
 U | per day | float | Protein degradation rate.
 d | NA | float | Effectiveness factor of feedback loop into protein translation. 
-r | NA | float | Normalized mRNA expression level from microarray data.
+r | NA | float | Condition specific transcript levels of the gene.
 
 ### Outputs
 

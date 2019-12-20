@@ -8,6 +8,7 @@ model:
     - src/GrCM_plain.py
   inputs:
     - GrCM_input1
+    - grn_input
     - GrCM_static
   outputs:
     - GrCM_output
