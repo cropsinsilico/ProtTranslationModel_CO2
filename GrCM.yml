@@ -2,10 +2,9 @@
 
 model:
   name: GrCMPython
-  driver: ModelDriver
+  language: python
   args: 
-    - python
-    - src/GrCM_plain.py
+    - ./src/GrCM_plain.py
   inputs:
     - GrCM_input1
     - grn_input
