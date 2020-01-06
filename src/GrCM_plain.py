@@ -66,8 +66,9 @@ def GrCM(grn_input, data_static, data_inp,
 
     # Set initial condition(s): for integrating variable and time! Get the
     # initial protein concentrations from Yu's file
-
-    percentageChange = grn_input.transpose()
+    percentageChange = grn_input.T.reset_index()
+    percentageChange.columns = percentageChange.iloc[0]
+    percentageChange.drop(percentageChange.index[0])
     percentageChange.columns = ['Glyma_ID','Averages_Elevated','Averages_ambient']
 
     data_static = pandas.merge(data_static, percentageChange, on='Glyma_ID')
