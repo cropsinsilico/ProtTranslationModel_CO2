@@ -96,10 +96,10 @@ def GrCM(grn_input, data_static, data_inp,
     mRNA = data_static["Initial_protein_contentEle"]
     r2.set_initial_value(initial_protein_concEle,
                          t_start).set_f_params(L, U, D, mRNA)
-    mRNA = data_static["initial_protein_concEleMutant"]
+    mRNA = data_static["MutantEleByWTAmb"]
     r3.set_initial_value(initial_protein_concEleMutant,
                          t_start).set_f_params(L, U, D, mRNA)
-    mRNA = data_static["initial_protein_concAmbMutant"]
+    mRNA = data_static["MutantAmbByWTAmb"]
     r4.set_initial_value(initial_protein_concAmbMutant,
                          t_start).set_f_params(L, U, D, mRNA)
 
