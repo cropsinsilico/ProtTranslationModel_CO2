@@ -2,4 +2,4 @@
 
 # ----------------Your Commands------------------- #
 
-cisrun GrCM.yml GrCM_tofile.yml
+yggrun GrCM.yml GrCM_tofile.yml

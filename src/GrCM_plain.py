@@ -6,7 +6,7 @@ from scipy import integrate
 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-from cis_interface.interface.CisInterface import *
+from yggdrasil.interface.YggInterface import *
 
 
 _save_trajectories = False
@@ -66,8 +66,9 @@ def GrCM(grn_input, data_static, data_inp,
 
     # Set initial condition(s): for integrating variable and time! Get the
     # initial protein concentrations from Yu's file
-
-    percentageChange = grn_input.transpose()
+    percentageChange = grn_input.T.reset_index()
+    percentageChange.columns = percentageChange.iloc[0]
+    percentageChange.drop(percentageChange.index[0])
     percentageChange.columns = ['Glyma_ID','Averages_Elevated','Averages_ambient']
 
     data_static = pandas.merge(data_static, percentageChange, on='Glyma_ID')
@@ -181,10 +182,10 @@ def main():
     # GrCM(data_static, data_inp)
 
     # Get input from chanels (supplied by file or another model)
-    in1 = CisPandasInput('GrCM_input1')
-    in2 = CisPandasInput('grn_input')
-    in3 = CisPandasInput('GrCM_static')
-    out1 = CisPandasOutput('GrCM_output')
+    in1 = YggPandasInput('GrCM_input1')
+    in2 = YggPandasInput('grn_input')
+    in3 = YggPandasInput('GrCM_static')
+    out1 = YggPandasOutput('GrCM_output')
 
     flag, data_static = in3.recv()
     if not flag:
