@@ -9,7 +9,7 @@ import matplotlib.gridspec as gridspec
 from yggdrasil.interface.YggInterface import *
 
 
-_save_trajectories = False
+_save_trajectories = True
 _plot_trajectories = False
 
 
@@ -199,7 +199,7 @@ def main():
         if not flag:
             print("GrCM: No more input from grn_input")
             break
-        data_static = GrCM(grn_input, data_static, data_inp, save_trajectories=False,
+        data_static = GrCM(grn_input, data_static, data_inp, save_trajectories=True,
                            plot_trajectories=False)
         out1.send(data_static)
 
