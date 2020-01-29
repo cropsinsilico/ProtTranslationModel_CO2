@@ -1,16 +1,13 @@
 #!/usr/bin/python
 import os
 import pandas
+import argparse
 import numpy as np
 from scipy import integrate
 
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from yggdrasil.interface.YggInterface import *
-
-
-_save_trajectories = True
-_plot_trajectories = False
 
 
 def Protein_translation_RNA(t, y, L, U, D, mRNA):
@@ -34,16 +31,18 @@ def Protein_translation_RNA(t, y, L, U, D, mRNA):
 TDIR = os.path.dirname(os.path.abspath(__file__))
 
 ####Need to add lines of code to add a 3rd input file 'GRN_input.txt' and modify it's columns to create a new mRNA exp column in data_static.txt
-def GrCM(grn_input, data_static, data_inp,
-         save_trajectories=True, plot_trajectories=True):
+def GrCM(grn_input, data_static, data_inp, outputfile=None,
+         plot_trajectories=False):
     r"""Integrate input, getting trajectories for the integration.
     Args:
+        grn_input (pandas.DataFrame): Output from genetic regulatory
+            network.
         data_static (pandas.DataFrame): Static information.
         data_inp (pandas.DataFrame): Initial values.
-        save_trajectories (bool, optional): If True, the trajectories will
-            be output to disk. Defaults to True.
+        outputfile (str, optional): File where trajectories should be saved.
+            If not provided, the trajectories will not be saved.
         plot_trajectories (bool, optional): If True, the trajectories will
-            be plotted. Defaults to True.
+            be plotted. Defaults to False.
     Outputs:
         pandas.DataFrame: The final values after integration.
     """
@@ -68,7 +67,7 @@ def GrCM(grn_input, data_static, data_inp,
     # initial protein concentrations from Yu's file
     percentageChange = grn_input.T.reset_index()
     percentageChange.columns = percentageChange.iloc[0]
-    percentageChange.drop(percentageChange.index[0])
+    percentageChange = percentageChange.drop(0)
     percentageChange.columns = ['Glyma_ID','Averages_Elevated','Averages_ambient']
 
     data_static = pandas.merge(data_static, percentageChange, on='Glyma_ID')
@@ -139,10 +138,8 @@ def GrCM(grn_input, data_static, data_inp,
     data_static.loc[:, 'Ele:Amb'] = list2[-1, :] / list1[-1, :]
     data_static.loc[:, 'EleMutant:Amb'] = list3[-1, :] / list1[-1, :]
     data_static.loc[:, 'AmbMutant:Amb'] = list4[-1, :] / list1[-1, :]
-    if save_trajectories:
-        data_static.to_csv(
-            os.path.join(TDIR, "..", "Output", "GrCM_output.txt"),
-            index=False, sep="\t")
+    if outputfile:
+        data_static.to_csv(outputfile, index=False, sep="\t")
 
     # All done!  Plot the trajectories in separate plots:
     if plot_trajectories:
@@ -170,40 +167,31 @@ def GrCM(grn_input, data_static, data_inp,
             ax.grid('on')
 
         plt.savefig('Protein_ODE_result.png', bbox='tight')
-    return data_static
+    data_output = data_static  # Hack to disambiguate w/ input channel
+    return data_output
 
     
-def main():
-    # read input data as pandas df & run with output trajectories and plots
-    # data_static = pandas.read_csv(
-    #     os.path.join(TDIR, "..", "Input", "GrCM_static.txt"), sep="\t")
-    # data_inp = pandas.read_csv(
-    #     os.path.join(TDIR, "..", "Input", "GrCM_input.txt"), sep="\t")
-    # GrCM(data_static, data_inp)
-
-    # Get input from chanels (supplied by file or another model)
-    in1 = YggPandasInput('GrCM_input1')
-    in2 = YggPandasInput('grn_input')
-    in3 = YggPandasInput('GrCM_static')
-    out1 = YggPandasOutput('GrCM_output')
-
-    flag, data_static = in3.recv()
-    if not flag:
-        raise Exception("GrCM: Error receiving from GrCM_static")
-
-    while True:
-        flag, data_inp = in1.recv()
-        if not flag:
-            print("GrCM: No more input from GrCM_input1")
-        flag, grn_input = in2.recv()
-        if not flag:
-            print("GrCM: No more input from grn_input")
-            break
-        data_static = GrCM(grn_input, data_static, data_inp, save_trajectories=True,
-                           plot_trajectories=False)
-        out1.send(data_static)
-
-        
 # The ``driver`` that will integrate the ODE(s):
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description='Run GrCM model.')
+    parser.add_argument(
+        '--grnfile', help='Output file from GRN.',
+        default=os.path.join(TDIR, "..", "Input", "GRN_Output.txt"))
+    parser.add_argument(
+        '--staticfile', help='File containing static inputs.',
+        default=os.path.join(TDIR, "..", "Input", "GrCM_static.txt"))
+    parser.add_argument(
+        '--inputfile', help='File containing non-static inputs.',
+        default=os.path.join(TDIR, "..", "Input", "GrCM_input.txt"))
+    parser.add_argument(
+        '--outputfile', help='File where output should be saved.',
+        default=os.path.join(TDIR, "..", "Output", "GrCM_output.txt"))
+    parser.add_argument('--plot-trajectories', action='store_true',
+                        help='Plot trajectories.')
+    args = parser.parse_args()
+    # read input data as pandas df & run with output trajectories and plots
+    grn_input = pandas.read_csv(args.grnfile, sep="\t")
+    data_static = pandas.read_csv(args.staticfile, sep="\t")
+    data_inp = pandas.read_csv(args.inputfile, sep="\t")
+    GrCM(grn_input, data_static, data_inp,
+         outputfile=args.outputfile, plot_trajectories=args.plot_trajectories)

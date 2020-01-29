@@ -3,11 +3,14 @@
 model:
   name: GrCMPython
   language: python
-  args: 
-    - ./src/GrCM_plain.py
+  args: ./src/GrCM_plain.py
+  function: GrCM
   inputs:
-    - GrCM_input1
-    - grn_input
-    - GrCM_static
+    - name: grn_input
+      recv_converter: pandas
+    - name: data_static
+      recv_converter: pandas
+    - name: data_inp
+      recv_converter: pandas
   outputs:
-    - GrCM_output
+    - data_output

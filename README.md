@@ -12,8 +12,14 @@ El Samad, H., Khammash, M., Petzold, L., & Gillespie, D. (2005). Stochastic mode
 
 ## Running the model
 
+### Without yggdrasil
 ```
-python src/GrMC_plain.py
+python src/GrCM_plain.py
+```
+
+### With yggdrasil
+```
+yggrun GrCM.yml GrCM_tofile.yml
 ```
 
 ## Model Inputs/Outputs
