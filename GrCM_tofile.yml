@@ -1,15 +1,16 @@
 ---
 
 connections:
-  - input: ./Input/GrCM_input.txt
-    output: GrCM_input1
-    filetype: pandas
   - input: ./Input/GRN_Output.txt
-    output: grn_input
+    output: GrCMPython:grn_input
     filetype: pandas
   - input: ./Input/GrCM_static.txt
-    output: GrCM_static
+    output: GrCMPython:data_static
     filetype: pandas
-  - input: GrCM_output
+    outside_loop: true
+  - input: ./Input/GrCM_input.txt
+    output: GrCMPython:data_inp
+    filetype: pandas
+  - input: GrCMPython:data_output
     output: ./Output/GrCM_output.txt
     filetype: pandas
