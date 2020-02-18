@@ -8,9 +8,22 @@ model:
   inputs:
     - name: grn_input
       recv_converter: pandas
+      default_file:
+        name: ./Input/GRN_Output.txt
+        filetype: pandas
     - name: data_static
       recv_converter: pandas
+      outside_loop: true
+      default_file:
+        name: ./Input/GrCM_static.txt
+        filetype: pandas
     - name: data_inp
       recv_converter: pandas
+      default_file:
+        name: ./Input/GrCM_input.txt
+        filetype: pandas
   outputs:
-    - data_output
+    - name: data_output
+      default_file:
+        name: ./Output/GrCM_output.txt
+        filetype: pandas
