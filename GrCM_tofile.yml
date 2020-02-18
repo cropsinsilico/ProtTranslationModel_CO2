@@ -7,7 +7,6 @@ connections:
   - input: ./Input/GrCM_static.txt
     output: GrCMPython:data_static
     filetype: pandas
-    outside_loop: true
   - input: ./Input/GrCM_input.txt
     output: GrCMPython:data_inp
     filetype: pandas
