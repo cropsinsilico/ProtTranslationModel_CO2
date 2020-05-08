@@ -42,8 +42,8 @@ p | g/L | float | Predicted steady state protein level.
 
 ## Additional notes regarding reproducibility of some tables pertaining to PTM model in Kannan et al., 2019 (doi:'https://doi.org/10.1093/insilicoplants/diz008')
 
-Supplemental figure S2 provides an example simulation of selection of 'D' factor two Glyma IDs that is used as one of the input parameters in 'Input/GrCM_Input.txt' file
+Supplemental figure S2 provides an example simulation of selection of 'D' factor for two Glyma IDs that is used as one of the input parameters in 'Input/GrCM_input.txt' file
 
-Supplemental table S2 provides information contained in certain columns in files present in the 'Input' folder
+Supplemental table S2 provides some information contained in 'Input/GrCM_input.txt' file
 
-Supplemental table S5 provides information contained in the 'Output/GrCM_Output.txt' file
+Supplemental table S5 provides information contained in the 'Output/GrCM_output.txt' file
